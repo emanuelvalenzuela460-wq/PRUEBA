@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isabella & Emanuel | Nuestro 1er Mes</title>
+  <style>
+    :root {
+      --primary: #ff4757;
+      --secondary: #ff6b81;
+      --bg: #fff0f3;
+      --card-bg: #ffffff;
+      --text: #2f3542;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 20px auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(255, 71, 87, 0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    header p {
+      font-size: 1.2em;
+      opacity: 0.9;
+    }
+
+    .timer-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .timer-title {
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    #timer {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: var(--text);
+    }
+
+    /* Reproductor Spotify */
+    .spotify-section {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .spotify-section h2 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    .spotify-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    /* Carta personalizada */
+    .letter {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 15px;
+      line-height: 1.8;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      white-space: pre-line;
+    }
+
+    .letter h2 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    /* Galería de fotos (6 imágenes) */
+    .gallery-section {
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    .gallery-section h2 {
+      color: var(--primary);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Botón Especial Sorpresa */
+    .surprise-section {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .surprise-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .surprise-btn:hover {
+      background-color: #e8384d;
+      transform: scale(1.05);
+    }
+
+    .surprise-message {
+      display: none;
+      background: #ffffff;
+      border: 2px dashed var(--secondary);
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 15px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 50 Razones */
+    .reasons-section h2 {
+      text-align: center;
+      color: var(--primary);
+    }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .reason-card {
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 10px;
+      border-left: 3px solid var(--secondary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      font-size: 0.95em;
+    }
+
+    .reason-number {
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #747d8c;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Isabella & Emanuel</h1>
+      <p>Nuestro Primer Mes Juntos ❤️</p>
+    </header>
+
+    <!-- Contador de Tiempo -->
+    <div class="timer-card">
+      <div class="timer-title">Llevamos juntos exactamente:</div>
+      <div id="timer">Cargando tiempo...</div>
+      <p style="font-size: 0.85em; color: #888;">Desde el 07/08/2026 en el cine</p>
+    </div>
+
+    <!-- Reproductor de Spotify -->
+    <div class="spotify-section">
+      <h2>🎵 Nuestras Canciones Especiales</h2>
+      <p>Escucha nuestras canciones mientras lees este espacio especial:</p>
+      <div class="spotify-container">
+        <!-- Perfecta - Miranda! -->
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/09QfIIP4NUx4A3thmovb2o" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <!-- Tek It - Cafuné -->
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/751srcHf5tUqcEa9pRCQwP" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <!-- Carta Personalizada -->
+    <div class="letter">
+      <h2>Para mi niña hermosa, Isabella ❤️</h2>
+      Bueno, no sé por dónde empezar; la verdad, nunca se me dio expresarme bien o explicar mis sentimientos, pero por ti voy a hacer un esfuerzo. Empecemos por el día en el que te conocí, esa llamada con Franchelly. Siendo sincero, desde ese día me caíste superbién, vi lo gran persona que eres y te quise mucho.
+
+      Luego empezamos a hablar más y poco a poco me fuiste gustando, pero cuando me dijiste que tenías novio y todo lo que me decías de él, empecé a reprimir esos sentimientos y más cuando vi lo tanto que lo amabas, también lo lindo que lo tratabas. Yo deseaba que alguien me tratara así o me amara así (quería que fueras tú). Me daba mucha molestia cómo te trataba ese tipo que no merecía tu amor, tus cariños, NO MERECÍA TU ATENCIÓN.
+      Pero en fin, el día que me llamaste y me dijiste que terminaste con él, me puse contento, aunque en el fondo triste, porque tú lo amaste mucho y, bueno, no podía hacer mucho, pero ahí estuve, te aconsejé y te apoyé. Sí, sé que no te escribía mucho, pero aun así ahí eras presente, te pensaba, estuviste y estás in my mind.
+
+      En fin, vayamos al día que me dijiste que vendrías. Ese día que estábamos en llamada y me contaste eso, me puse muy feliz y creo que se notó bastante, tanto que no podía creerlo. Esa noche, la verdad, no pude dormir pensando en ti y creo que desde que empezamos a dormir en llamada, el ambiente entre nosotros empezó a cambiar bastante. Yo siento que te ponías celosa cuando me trataba de novios con Victoria, JAJAJA, ya, pero ese no es el punto.
+
+      Bueno, al saber que ya habías pisado Santa Bárbara, estaba muy ansioso por verte y supongo que lo notaste porque te había dicho que tenía que hacer y cambié el plan a último minuto solo para ir a verte y cuando vi que viniste corriendo a abrazarme, me puso muy feliz viendo que querías esto tanto como yo, siéndote sincero.
+
+      Noté que estabas muy pegada a mí, como si no me quisieras soltar, y eso me empezó a dar alarmas. Pensé: "¿Será que le gusto o solo me quiere mucho?". Aunque no me quise hacer muchas ideas, me estaba ilusionando. Ya luego de que me afeité y empezaste a comportarte de una manera, ¿cómo decirlo?, muy amorosa, empecé a ilusionarme más; por eso quise ponerte de fondo y que desbloquees mi celu con tu huella.
+
+      Ya después ir agarrados de la mano y el brazo, te lo juro que fue lo más lindo que pudiste hacer. Estar de esa manera tan inocente es lo que me mata estando contigo, porque contigo me puedo comportar como un niño pequeño y eso es de las cosas que me gustan de ti.
+
+      Seguidamente, cuando cayó la noche y me escribiste ese mensaje que nunca se me olvidará: "¿Qué pasa si te beso?" me emocionó demasiado que, la verdad, fue una muy mala respuesta de mi parte porque no supe qué decir.
+
+      En fin, ya después que estuvimos hablando de nuestros sentimientos, que te invité a comer helado y luego en los chinos que nos dimos nuestro primer pico, supe en ese momento que eras todo lo que estaba buscando y al fin lo encontré.
+
+      Luego verte en la graduación con ese vestido blanco fue muy hermoso; te miraste tan linda y tan tierna que no pude dejar de verte y pensar en ti. Luego, cuando supe que irías a la fiesta, pensé que no estaría tan mal. Desde ahí comprendí que te amo, de verdad que te quería en mi vida para siempre.
+
+      Ya luego, cuando fuimos al cine y pasó todo eso y sobre todo que te pedí ser mi novia, fue el mejor día de mi vida. Fue un día memorable, algo que nunca olvidaré y ya desde ese punto toda nuestra historia comenzó: los juegos, las desveladas, las risas, las bromas, los enojos, los celos, las caricias, el cariño y sobre todo este lindo y hermoso amor que hasta el día de hoy ha perdurado y mantenido gracias a los dos.
+
+      Espero que siga así por el resto de nuestras vidas. Gracias por dejarme ser tu acompañante. Feliz primer mes y te amo demasiado. Eres el amor de mi vida.
+
+      <strong>Posdata:</strong> terminé de escribir el texto a las 5:12am mientras estamos en llamada hoy 5 de septiembre a dos días de nuestro día.
+
+      <p style="text-align: right; font-weight: bold; color: var(--primary); margin-top: 20px;">Con todo mi amor,<br>Emanuel</p>
+    </div>
+
+    <!-- Galería de Fotos (6 fotos) -->
+    <div class="gallery-section">
+      <h2>📸 Nuestros Recuerdos</h2>
+      <div class="gallery-grid">
+        <img id="foto1" src="foto1.jpg" alt="Foto 1">
+        <img id="foto2" src="foto2.jpg" alt="Foto 2">
+        <img id="foto3" src="foto3.jpg" alt="Foto 3">
+        <img id="foto4" src="foto4.jpg" alt="Foto 4">
+        <img id="foto5" src="foto5.jpg" alt="Foto 5">
+        <img id="foto6" src="foto6.jpg" alt="Foto 6">
+      </div>
+    </div>
+
+    <!-- Botón Especial Sorpresa -->
+    <div class="surprise-section">
+      <button class="surprise-btn" onclick="toggleSurprise()">✨ Haz clic para una sorpresa ✨</button>
+      <div class="surprise-message" id="surpriseMessage">
+        <p style="font-size: 1.3em; color: var(--primary); font-weight: bold; margin: 0;">
+          TE AMO DEMASIADO, ERES TODO PARA MÍ, NUNCA TE VAYAS ❤️
+        </p>
+      </div>
+    </div>
+
+    <!-- 50 Razones -->
+    <div class="reasons-section">
+      <h2>50 Razones Por Las Que Te Amo</h2>
+      <div class="reasons-grid" id="reasonsContainer"></div>
+    </div>
+
+    <footer>
+      Hecho con todo el amor del mundo por Emanuel para Isabella 💖
+    </footer>
+  </div>
+
+  <script>
+    // Contador de tiempo
+    const startDate = new Date('2026-08-07T00:00:00');
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('timer').innerHTML = 
+        `${days} días, ${hours} horas, ${minutes} minutos y ${seconds} segundos`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Botón sorpresa
+    function toggleSurprise() {
+      const msg = document.getElementById('surpriseMessage');
+      if (msg.style.display === 'block') {
+        msg.style.display = 'none';
+      } else {
+        msg.style.display = 'block';
+      }
+    }
+
+    // 50 Razones
+    const reasons = [
+      "Por la forma en que me sonríes.",
+      "Porque haces que cada día sea mejor.",
+      "Por el recuerdo inolvidable del día en el cine.",
+      "Por la voz dulce que tienes al hablarme.",
+      "Por cómo me iluminas el corazón aun a la distancia.",
+      "Porque eres la persona más hermosa que conozco.",
+      "Por la paz que me transmites.",
+      "Porque encajas perfectamente conmigo como en la canción.",
+      "Por cómo cuidas de mí a través de tus mensajes.",
+      "Por tu amabilidad y tu buen corazón.",
+      "Porque me haces reír incluso cuando no tengo ganas.",
+      "Por tus abrazos inolvidables.",
+      "Por tu mirada tierna.",
+      "Porque haces que la distancia sea fácil de llevar.",
+      "Por la confianza que compartimos.",
+      "Por tus detalles inesperados.",
+      "Porque eres mi lugar seguro.",
+      "Por cómo me motivas a dar lo mejor de mí.",
+      "Por tus bromas y ocurrencias.",
+      "Por cómo me haces sentir amado y valorado.",
+      "Porque me escuchas con paciencia siempre.",
+      "Por la emoción de planear nuestro próximo encuentro.",
+      "Por ser mi mejor amiga y mi novia a la vez.",
+      "Por la forma en que dices mi nombre.",
+      "Porque cada minuto a tu lado o hablando contigo vale la pena.",
+      "Por la complicidad que tenemos.",
+      "Por la alegría que me das cuando veo una notificación tuya.",
+      "Porque eres auténtica y transparente.",
+      "Por tus metas y sueños que me inspiran.",
+      "Porque juntos hacemos el mejor equipo.",
+      "Por cómo me cuidas incluso desde lejos.",
+      "Por tu sentido del humor único.",
+      "Porque haces que las cosas simples se sientan especiales.",
+      "Por todos los momentos lindos de este primer mes.",
+      "Por tu dulzura infinita.",
+      "Porque eres la razón de mis sonrisas mirando el celular.",
+      "Por la manera en que comprendes mis pensamientos.",
+      "Por tus consejos inteligentes.",
+      "Porque contigo puedo ser yo mismo sin miedo a nada.",
+      "Por tu paciencia y comprensión.",
+      "Porque llenas mi vida de colores bonitos.",
+      "Por la ilusión que me da nuestro futuro juntos.",
+      "Por tu forma tan linda de ver la vida.",
+      "Por cada «te amo» que me dices.",
+      "Por hacerme sentir el chico más afortunado.",
+      "Porque encajas perfectamente en todos mis planes.",
+      "Por tu ternura única.",
+      "Porque este es solo el primer mes de muchos más.",
+      "Por ser exactamente como eres.",
+      "Simplemente... ¡Por ser tú, mi niña perfecta!"
+    ];
+
+    const container = document.getElementById('reasonsContainer');
+    reasons.forEach((reason, index) => {
+      const card = document.createElement('div');
+      card.className = 'reason-card';
+      card.innerHTML = `<span class="reason-number">${index + 1}.</span> ${reason}`;
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
